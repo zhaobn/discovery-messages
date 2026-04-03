@@ -156,7 +156,7 @@ function renderNotebook() {
 
     const del = document.createElement('button');
     del.className = 'nb-delete';
-    del.textContent = '✕';
+    del.textContent = '\u2715';
     del.onclick = () => deleteNote(i);
 
     li.appendChild(label);
