@@ -120,6 +120,7 @@ function closeMsgModal() {
   msgState.msgOpenTime = null;
   document.getElementById('msg-modal-overlay').style.display = 'none';
   msgState.currentMsg = null;
+  unlockContinueIfReady();
 }
 
 // ── Notebook ───────────────────────────────────────────────────────────────
@@ -170,6 +171,7 @@ function deleteNote(i) {
   entry.deletedAt = new Date().toISOString();
   msgState.notebookDeleted.push(entry);
   msgState.notebook.splice(i, 1);
+  unlockContinueIfReady();
   renderNotebook();
 }
 
@@ -182,14 +184,17 @@ function showNotebookHint(msg) {
 
 // ── Gate ───────────────────────────────────────────────────────────────────
 function unlockContinueIfReady() {
-  if (msgState.readIds.size >= 1) {
-    document.getElementById('messages-btn').disabled = false;
-  }
+  const ready = msgState.readIds.size >= 1 && msgState.notebook.length >= 1;
+  document.getElementById('messages-btn').disabled = !ready;
 }
 
 // ── Reflect phase ───────────────────────────────────────────────────────────
 function showReflect() {
-  msgState.reflectStartedAt = new Date().toISOString();
+
+  const now = new Date();
+  msgState.reflectStartedAt = now.toISOString();
+  subjectData['messages_browse_duration'] = now - messages_browse_start_time;
+  messages_reflect_start_time = now;
   
   // Populate the read-only notebook copy
   const list = document.getElementById('reflect-notebook-list');
@@ -211,18 +216,20 @@ function showReflect() {
 }
 
 function handleReflectDone() {
+  
+  const reflect_end = new Date();
+  start_task_time = reflect_end; 
+  subjectData['messages_reflect_duration'] = reflect_end - messages_reflect_start_time;
+  
   subjectData.notebook = msgState.notebook.map(e => ({ from: e.from, text: e.text, sampleId: e.sampleId }));
   subjectData.summary = document.getElementById('reflect-text').value.trim();
-
+  
   notesData.condition = COND;
   notesData.msgsRead = msgState.dwellTimes;
   notesData.notebook = msgState.notebook;
   notesData.notebookDeleted = msgState.notebookDeleted;
   notesData.summary = subjectData.summary;
   
-  notesData.reflectStartedAt = msgState.reflectStartedAt;
-  notesData.reflectSubmittedAt = new Date().toISOString();
-
   applyStrategyToTask();
   hideAndShowNext('messages', 'task', 'block');
 

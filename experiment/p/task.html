@@ -12,7 +12,7 @@
 
   <body>
 
-    <div id="welcome" class="base" style="display:none;">
+    <div id="welcome" class="base" >
         
       <div style="text-align: right; padding: 0.5em 1em; font-size: 1em;">
         <a href="accessibility.html">Accessibility</a>
@@ -149,12 +149,12 @@
         </div>
 
         <div class='button-group-vc'>
-          <button class='big-button' id='instruction-btn-1' onclick="hideAndShowNext('instruction', 'messages', 'block')">Begin</button>
+          <button class='big-button' id='instruction-btn-1' onclick="beginTask()">Begin</button>
         </div>
       </div>
     </div>
 
-    <div id="messages" class="long-base">
+    <div id="messages" class="long-base" style="display:none;">
 
       <!-- ── Phase 1: Browse ───────────────────────────────────────────── -->
       <div id="messages-browse" >
@@ -204,12 +204,13 @@
       <div id="messages-reflect" style="display: none;">
         <h2>Before you start</h2>
         <p>Take a moment to think about what stood out in the messages you just read.</p>
-        <p>Below are the notes you saved. Read through them, then write a short summary in your own words&mdash;this will be shown to you as a reminder during the game.</p>
+        <p>Below are the notes you saved. Read through them, then write a short summary in your own words</p>
+        <p>Write carefully! Only your summary will be shown to you as a reminder during the game, NOT your notes.</p>
         
         <div id="messages-columns" style="display:flex; gap:24px; align-items:flex-start;">
           <div id="reflect-summary-col" style="flex:3;">
-            <h3>✏️ Your Strategy</h3>
-            <p>In your own words, what is your plan for the game? What will you try first?</p>
+            <h3>✏️ Your Summary (to carry over to the game)</h3>
+            <p>What do you want to remember for the game?</p>
             <textarea id="reflect-text" style="width:90%; height:200px; font-size:1em;" placeholder="Write your strategy here..."></textarea>
           </div>
 
@@ -247,13 +248,14 @@
 
 
           <div id="task-strategy" style="margin-top:14px; padding:10px 14px; background:#f7f7f7; border-radius:6px; border-left:3px solid #5a9;">
-            <strong>📓 Your notes:</strong> <span id="task-strategy-text" style="font-style:italic;"></span>
+            <strong>📓 Your summary:</strong> <span id="task-strategy-text" style="font-style:italic;"></span>
           </div>
 
 
           <div id="task-composer" style="display: none;">
 
-            <p style="padding: 0; margin: 0;">You can now leave some <b>messages for a future player</b>. This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
+            <p style="padding: 0; margin: 0;">Now, it is your turn to leave a message for a future player. </p>
+            <p>This message will be passed on to someone who will play the <b>same game</b> you just played, starting with the <b>same initial settings</b>.</p>
             <!-- <p>Think about what you've learned—strategies, combinations, or tips that could help the next player score more points.</p>-->
             <p>Share tips or strategies that could help the next player score more points:</p>
             <textarea id="composer-text-how" style="height: 100px; width: 92%;" placeholder="Type your message here..."></textarea>

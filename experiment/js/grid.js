@@ -54,6 +54,7 @@ function createGrid() {
       if (item) {
         cell.appendChild(drawItem(item.item_name, item.item_icon));
         itemCount++;
+        checkItemCount();
       }
 
       // Add player to initial position
@@ -95,6 +96,8 @@ function consumeItem(itemName) {
   let item = items.find((item) => item.item_name === itemName);
   let itemPoints = 10 ** item.item_level;
   POINTS += itemPoints;
+  itemCount--;
+  checkItemCount();
 
   // Update inventory
   if (!attemptedItems.has(itemName)){
@@ -163,6 +166,8 @@ function regenerateItems(itemsToRegenerate) {
           // Add the item back to the grid
           randomCell.appendChild(drawItem(item.item_name, item.item_icon));
           regeneratedItems.add(itemName);
+          itemCount++;
+          checkItemCount(); 
         }
       }
     }, waitTime);
@@ -247,8 +252,8 @@ function handleSpacePress() {
       actionType = "pickUp";
       currentlyCarrying = itemElement.id;
       getEl(currentlyCarrying).remove();
-      getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
+      getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
       updatePlayerPosition();
 
     }
@@ -382,6 +387,8 @@ function combineItem(heldItem, targetItem) {
 
       playerCell.querySelector(".item-image").remove();
       currentlyCarrying = yieldItem;
+      itemCount--;
+      checkItemCount();
 
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
 
@@ -430,6 +437,8 @@ function combineItem(heldItem, targetItem) {
 
       getEl("task-info-carrying").innerHTML = nameToIcon(currentlyCarrying);
       updatePlayerPosition();
+      itemCount--;
+      checkItemCount();
 
       regenerateItems([heldItem, targetItem]);
 
@@ -444,7 +453,8 @@ function combineItem(heldItem, targetItem) {
 
  }
 function checkItemCount() {
-  if (itemCount <= 0) {
+  // console.log("Current item count:", itemCount);
+  if (itemCount < 1) {
     setTimeout(() => {
       grid_done();
     }, 1000);

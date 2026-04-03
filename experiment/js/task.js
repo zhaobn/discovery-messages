@@ -1,26 +1,31 @@
-const isDev = false;
+const isDev = true;
 isDev? console.log(COND): null;
 
 // Data
 let start_time = new Date();
 let start_task_time = null;
 let task_end_time = null;
+let instruction_start_time = null;
+let messages_browse_start_time = null;
+let messages_reflect_start_time = null;
 
 let subjectData = {};
 subjectData['start_time'] = formatDates(start_time, 'datetime');
+instruction_start_time = start_time;
 
 // Collect prolific id
 function handle_prolific() {
   subjectData['prolific_id'] = getEl('prolific_id_text').value;
+  instruction_start_time = new Date();
   hideAndShowNext('prolific_id', 'instruction', 'block');
 }
 
 // Instruction
 getEl('instruct-action').innerHTML = MAX_ACTIONS;
 function beginTask() {
-  hideAndShowNext('instruction', 'task', 'block');
-  start_task_time = new Date();
-  subjectData['instruction_duration'] = start_task_time - start_time;
+  messages_browse_start_time = new Date();
+  subjectData['instruction_duration'] = messages_browse_start_time - instruction_start_time;
+  hideAndShowNext('instruction', 'messages', 'block');
 }
 
 // Comprehension check
@@ -91,6 +96,7 @@ function grid_done() {
     hide('task-info');
     getEl("task-content").style.marginTop = "40px";
     hide('task-grid');
+    hide('task-strategy');
     showNext('task-composer', 'block');
   }, 1000);
 }
@@ -114,7 +120,7 @@ function handle_submit() {
   // subjectData['messageRules'] = composerTextRules;
 
   let message_done_time = new Date();
-  subjectData['message_duration'] = message_done_time - task_end_time;
+  subjectData['composition_duration'] = message_done_time - task_end_time;
 
   hideAndShowNext('task', 'debrief', 'block');
 }
@@ -147,13 +153,8 @@ function is_done(complete_code) {
   subjectData['total_points'] = POINTS;
   subjectData['allow_regeneration'] = allowRegeneration;
 
-  const end_time = new Date();
-
   let clientData = {};
   clientData.subject = subjectData;
-  clientData.subject.date = formatDates(end_time, 'date');
-  clientData.subject.time = formatDates(end_time, 'time');
-  clientData.subject.task_duration = end_time - start_task_time;
   clientData.subject.token = token;
 
   clientData.actions = actionData;
