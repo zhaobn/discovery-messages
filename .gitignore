@@ -1,4 +1,6 @@
 .DS_Store
 python/venv/
+
+experiment/.vscode/
 experiment/php/db_config.php
 experiment/php/colab_db_config.php
