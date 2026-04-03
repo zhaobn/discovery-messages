@@ -1,4 +1,4 @@
-const isDev = true;
+const isDev = false;
 isDev? console.log(COND): null;
 
 // Data

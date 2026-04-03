@@ -1,10 +1,15 @@
 <!-- 
-CREATE TABLE grid_pilot_1 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  worker VARCHAR(32),
-  assignment varchar(32),
-  total bigint(20),
-  subject longtext,
-  events longtext,
-  actions longtext
-); -->
+DROP TABLE IF EXISTS message_pilot_1;
+
+CREATE TABLE message_pilot_1 (
+  id         INT AUTO_INCREMENT PRIMARY KEY,
+  worker     VARCHAR(255),
+  assignment VARCHAR(255),
+  total      INT,
+  subject    LONGTEXT,
+  events     LONGTEXT,
+  actions    LONGTEXT,
+  notes      LONGTEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-->
