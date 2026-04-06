@@ -22,6 +22,24 @@ function handle_prolific() {
 
 // Instruction
 getEl('instruct-action').innerHTML = MAX_ACTIONS;
+let currentPage = 1;
+const totalPages = 4;
+function goToPage(n) {
+  document.getElementById('instruct-page-' + currentPage).classList.remove('visible');
+  currentPage = n;
+  document.getElementById('instruct-page-' + currentPage).classList.add('visible');
+
+  for (let i = 1; i <= totalPages; i++) {
+    const dot = document.getElementById('dot-' + i);
+    dot.classList.remove('active', 'done');
+    if (i < currentPage)       
+      dot.classList.add('done');
+    else if (i === currentPage) dot.classList.add('active');
+    }
+
+  document.getElementById('progress-label').textContent = 'Page ' + currentPage + ' of ' + totalPages;
+  document.getElementById('instruction').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 function beginTask() {
   messages_browse_start_time = new Date();
   subjectData['instruction_duration'] = messages_browse_start_time - instruction_start_time;
