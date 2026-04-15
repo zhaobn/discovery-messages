@@ -14,20 +14,33 @@ OUTPUT_DIR <- "../data/pilot/"
 
 
 # Read raw data
-raw <- read_tsv(INPUT_FILE, col_types = cols(.default = col_character()))
-nrow(raw)
+lines <- read_lines(INPUT_FILE)
+raw <- read_delim(I(paste(lines, collapse = "\n")), delim = "\t", quote = "", 
+                  col_types = cols(.default = col_character()))
+raw <- raw %>%
+  rename_with(~ gsub('^"|"$', '', .x)) |>
+  mutate(across(everything(), ~ gsub('^"|"$', '', .x)))
 
 # Filter rows
-clean <- raw %>% filter(id > 1)
-nrow(clean)
+clean <- raw %>% 
+  mutate(id = as.numeric(as.character(id))) %>%
+  filter(id > 4)
+
+# Ad-hoc fixes
+x <- clean$subject[13]
+x_fixed <- gsub('matter\\.\\\\\\\\\\\\\"\\\\\"', 'matter.\\\\\"', x, fixed = FALSE)
+clean$subject[13] <- x_fixed
 
 # Helper functions to parse json
 fix_json <- function(s) {
-  gsub("\\", '"', s, fixed = TRUE)
+  #gsub("\\", '"', s, fixed = TRUE)
+  gsub('^"|"$', '', s, fixed = TRUE)
+  gsub('\\\\\"', '"', s)
 }
 parse_json_col <- function(s) {
   tryCatch(fromJSON(fix_json(s)), error = function(e) NULL)
 }
+
 
 
 # Parses raw data and writes five clean CSVs:
@@ -55,8 +68,8 @@ subject <- clean %>%
     start_time                = map_chr(parsed, \(x) x[["start_time"]]                %||% NA_character_),
     allow_regeneration        = map_lgl(parsed, \(x) isTRUE(x[["allow_regeneration"]])),
     total_points              = map_int(parsed, \(x) as.integer(x[["total_points"]]   %||% NA)),
-    instruction_duration_ms   = map_int(parsed, \(x) as.integer(x[["instruction_duration"]]      %||% NA)),
-    browse_duration_ms        = map_int(parsed, \(x) as.integer(x[["messages_browse_duration"]]  %||% NA)),
+    # instruction_duration_ms   = map_int(parsed, \(x) as.integer(x[["instruction_duration"]]      %||% NA)),
+    # browse_duration_ms        = map_int(parsed, \(x) as.integer(x[["messages_browse_duration"]]  %||% NA)),
     reflect_duration_ms       = map_int(parsed, \(x) as.integer(x[["messages_reflect_duration"]] %||% NA)),
     task_duration_ms          = map_int(parsed, \(x) as.integer(x[["task_duration"]]             %||% NA)),
     composition_duration_ms   = map_int(parsed, \(x) as.integer(x[["composition_duration"]]      %||% NA))
@@ -66,7 +79,8 @@ subject <- clean %>%
     age, sex, engagement, difficulty, feedback,
     start_time, allow_regeneration, total_points,
     summary, message_how,
-    instruction_duration_ms, browse_duration_ms, reflect_duration_ms,
+    # instruction_duration_ms, browse_duration_ms, 
+    reflect_duration_ms,
     task_duration_ms, composition_duration_ms
   )
 # ----
@@ -208,5 +222,41 @@ write_csv(events,    file.path(OUTPUT_DIR, "events.csv"))
 write_csv(actions,   file.path(OUTPUT_DIR, "actions.csv"))
 write_csv(msgs_read, file.path(OUTPUT_DIR, "msgs_read.csv"))
 write_csv(notebook,  file.path(OUTPUT_DIR, "notebook.csv"))
+
+
+# Prep for data sharing - remove prolific IDs
+subject_data = read.csv('../data/pilot/subject.csv')
+bonus_data = subject_data %>%
+  mutate(bonus = log(total_points+1)/10) %>%
+  select(worker, bonus)
+write.csv(bonus_data, file = '../data/pilot/bonus.csv')
+
+subject_cleaned = subject_data %>%
+  select(id = sub_id, 
+         condition, 
+         messageHow = message_how, messageRules = summary, total_points,
+         age, sex, engagement, difficulty, feedback, 
+         task_duration_ms, reflect_duration_ms, composition_duration_ms)
+write.csv(subject_cleaned, file = '../data/pilot/subject_cleaned.csv')
+
+# append condition to action data
+id_cond = subject_cleaned %>% select(id, condition)
+action_data = read.csv('../data/pilot/actions.csv') 
+action_data_cleaned = action_data %>%
+  rename(id=sub_id, step=act_id) %>%
+  filter(step <= 40) %>% 
+  left_join(id_cond, by='id')
+write.csv(action_data_cleaned, file = '../data/pilot/actions_cleaned.csv')
+
+
+# get cleaned message data
+msg_g0 = read.csv('../data/g0/message_data.csv')
+message_data = subject_data %>%
+  select(id=sub_id, condition, messageHow = message_how, messageRules = summary, total_points)
+write.csv(message_data, file = '../data/pilot/message_data.csv')
+
+
+
+
 
 
