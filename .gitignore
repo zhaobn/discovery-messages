@@ -1,6 +1,13 @@
 .DS_Store
+
 python/venv/
+python/.env
+
+.Rhistory
+R/.Rhistory
+R/.RData
 
 experiment/.vscode/
 experiment/php/db_config.php
 experiment/php/colab_db_config.php
+

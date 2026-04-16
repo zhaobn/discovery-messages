@@ -256,7 +256,24 @@ message_data = subject_data %>%
 write.csv(message_data, file = '../data/pilot/message_data.csv')
 
 
+# Message reading ----
+browse_data = read.csv('../data/pilot/msgs_read.csv')
+notebook_data =  read.csv('../data/pilot/notebook.csv')
+notebook_data = notebook_data %>%
+  mutate(prev_player_id = as.integer(substr(msg_from, 9,100)))
 
+id_conds = subject_data %>% 
+  select(sub_id = id, condition, total_points) %>%
+  mutate(log_total_points = log(total_points + 1))
+browse_data = browse_data %>% left_join(id_conds, by = 'sub_id')
+notebook_data = notebook_data %>% left_join(id_conds, by = 'sub_id')
+
+browse_data$condition <- factor(browse_data$condition, levels = cond_levels)
+notebook_data$condition <- factor(notebook_data$condition, levels = cond_levels)
+notebook_data <- notebook_data %>% rename(msg_rank = prev_player_id)
+
+write.csv(browse_data, file = '../data/pilot/browse_cleaned.csv')
+write.csv(notebook_data, file = '../data/pilot/notebook_cleaned.csv')
 
 
 

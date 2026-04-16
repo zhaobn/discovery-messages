@@ -1,0 +1,101 @@
+id,condition,source_col,sentence,label
+47,easy,messageHow,Gems of the same shape merge to make new gems.,rule
+47,easy,messageHow,Colour and pattern doesn't seem to matter.,rule
+47,easy,messageRules,Merging gems of the same shape produced new gems.,rule
+47,easy,messageRules,Attempting to merge gems of differing shapes failed every time in my trials.,rule
+114,easy,messageHow,I suggest fusing together all the ones of the same shape (e.g.,rule
+114,easy,messageHow,triangles) but not if you've already fused one with the same pattern.,rule
+114,easy,messageHow,"So you could fuse a plain triangle and a dotty triangle and a triangle with a checked pattern, but then don't fuse another dotty triangle after that.",rule
+114,easy,messageHow,This technique worked every single time except once.,other
+114,easy,messageRules,"You can usually fuse together objects of the same shape, but you can't repeat objects with the same pattern.",rule
+114,easy,messageRules,"So you can't fuse a plain triangle, then a dotty triangle, then a plain triangle, for example.",rule
+114,easy,messageRules,"But you could fuse a plain triangle, then a dotty triangle, then a checked triangle, and so on.",rule
+101,easy,messageHow,Match alike shapes with different shades each transition,rule
+101,easy,messageRules,alike shapes lead to better values,strategy
+85,easy,messageHow,Combine the same shapes and collect all the same shapes until they are finished.,rule
+85,easy,messageHow,Don't rush to drop a shape because new ones of the same type may pop up.,strategy
+85,easy,messageHow,"When finished with a certain set of shapes, be sure to drop the one you are holding, then pick up another one and repeat the same pattern.",tip
+85,easy,messageHow,Never mix two different shapes.,rule
+85,easy,messageRules,"When you mix different shapes, you get an error, but mixing the same shape can give you a new shape and color and therefore points, depending on the patterns on the shapes that you mixed.",rule
+32,easy,messageHow,Long space adds extra points,other
+32,easy,messageRules,Long spacing,other
+5,easy,messageHow,just continue too pair up the red shapes with the ones you create too make purple,strategy
+5,easy,messageRules,"start with one shape at a time and pair up all the same shapes first, for example the squares, once you get too purple colour cash it in for points, continue to do that with all the other shapes",strategy
+108,easy,messageHow,"Form seems to be a determinant factor for the capacity of fusion (triangle fuses with triangle, etc.).",rule
+108,easy,messageRules,Form seems to be more important than the pattern.,strategy
+3,easy,messageHow,Try to get the purple crystals as getting higher tier crystals is exponentially better,strategy
+3,easy,messageRules,Merge with the same shape,rule
+111,easy,messageHow,"I had none, just went with my gut.",other
+111,easy,messageRules,I didn't notice any patterns.,other
+104,easy,messageHow,Pick the same shapes for the recipes.,rule
+104,easy,messageHow,Be aware that some colour/patterns for the shapes can't fuse.,rule
+104,easy,messageRules,Shapes had to be the same for the recipes to fuse.,rule
+104,easy,messageRules,Certain colours/patterns will not fuse.,rule
+259,hard,messageHow,Take a look around the board first to ensure you know where each gem is before starting.,strategy
+259,hard,messageRules,I didn't find a pattern that was easy,other
+252,hard,messageHow,its all a bit random but circles seem to do better,strategy
+252,hard,messageRules,a did not spot much at all,other
+256,hard,messageHow,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points.",rule
+256,hard,messageHow,Don't forget to harvest.,other
+256,hard,messageHow,"Do the same with circle + square, + square, etc.",rule
+256,hard,messageHow,Pattern doesn't matter.,rule
+256,hard,messageRules,Diamonds and triangles go together.,rule
+256,hard,messageRules,Circles and squares go together,rule
+251,hard,messageHow,I tried to recreate the same combinations,strategy
+251,hard,messageRules,similar seemed to make a higher score,strategy
+258,hard,messageHow,"Ensure to notice each crystals combination that generates points in previous periods of picking up crystals, fusing and harvesting which would assist in earning more energy points eventually.",strategy
+258,hard,messageHow,"However, every points is worth it throughout the overall moves.",other
+258,hard,messageRules,"There are each crystal that matches the other which assisted me in picking a present crystal, fuse and harvest crystals for energy points.",other
+258,hard,messageRules,"hence, I used my previous pattern to guauge on present which in turns assisted me in combining the perfect crystals for energy points earnings",strategy
+253,hard,messageHow,Striped triangle and striped diamond make an orange striped triangle,rule
+253,hard,messageRules,Both shapes had the same pattern,other
+260,hard,messageHow,I can't really suggest any tips or strategies as I didn't really understand the game,other
+260,hard,messageRules,You have to harvested crystals move spaces by using arrow keys pick up crystals using spacebar to fuse crystals hold a crystal on top of another and press spacebar To harvest crystals press spacebar.,tip
+260,hard,messageRules,This means you can earn energy points To drop crystals press D,tip
+255,hard,messageHow,was just picking randomly,other
+255,hard,messageRules,didnt notice any pattern,other
+254,hard,messageHow,watch the gains on the right side panel and work from them,strategy
+254,hard,messageRules,I was acting too quickly to really notice.,other
+257,hard,messageHow,I matched the fuse together priortizing the high values first.,strategy
+257,hard,messageRules,Fusing the only identical shapes,rule
+64,medium,messageHow,"When you find a combination of two objects, make note of the pattern inside the newly created object, fuse the new object (the one that you're holding) with the same shaped object that allowed you to create the new object, but with a different pattern than the new object.",rule
+64,medium,messageRules,"I noticed that the pattern on the inside of the object that is combined with the held object is retained when combining, while the held object's shape was retained when combining.",other
+118,medium,messageHow,Can combine different colors together.,rule
+118,medium,messageHow,Unsure of whether can fuse same shapes as I was unsuccessful.,other
+118,medium,messageHow,Checkered shapes can be combined with near full (checkered) shapes.,rule
+118,medium,messageHow,"The combined shape will combined properties, one of each shape (not color).",rule
+118,medium,messageHow,"Pressing spacebar will consume the item on an empty space, so make sure to press D to drop and not waste points!",tip
+118,medium,messageRules,"Combined shapes retain properties of each items, the first item will be the shape, the pattern of the second.",rule
+118,medium,messageRules,And colors do not have to be the same to be combined.,rule
+100,medium,messageHow,Pick a crystal up and merge it with other crystals.,tip
+100,medium,messageRules,I was seeing different colors in the crystals and seeing how valuable they was.,other
+87,medium,messageHow,I have no idea what i waws doing.,other
+87,medium,messageHow,Guess game,other
+87,medium,messageRules,I tried to match,other
+24,medium,messageHow,"Remember to drop off your colours (if its a good one) pressing space before you try and merge again, its very possible to go backwards in colour tiers I think so you can potentially lose points rather than accidentally merge into a lower colour.",tip
+24,medium,messageHow,"Always check out the hints for each block at the top, you can plan your moves this way before randomly trying to find out what works best.",tip
+24,medium,messageRules,"I could not find any rules/patterns, everything seemed fairly random.",other
+21,medium,messageHow,"Do not mindlessly click, try and figure out a pattern of what combines first.",strategy
+21,medium,messageHow,"It is simpler than you think - if two shapes mix, keep mixing the new crystal with the same shape to create new colours!",strategy
+21,medium,messageRules,"If you combine two shapes together and keep combing them, you move up in the crystal points rank",strategy
+116,medium,messageHow,Never go with two similar shaped crystals.,rule
+116,medium,messageHow,combining different shapes might help to fuse.,strategy
+116,medium,messageHow,After you fuse it.,other
+116,medium,messageHow,Take it and harvest it in an empty space.,tip
+116,medium,messageRules,I didn't notice any pattern but I believe it never fuses when you try to combine two similar shaped crystals.,rule
+97,medium,messageHow,The triangles combine only with the diamonds and vice versa.,rule
+97,medium,messageHow,The squares combine only with the circles and vice versa.,rule
+97,medium,messageHow,"Following this, choose a figure to start with and start matching with its geometric partner that has a different color or pattern.",strategy
+97,medium,messageHow,Example: I start with a square of stripes and combine it with a plain circle.,other
+97,medium,messageHow,"Imagine that a plain square with different colour turns out, which I will combine with another circle with dots.",other
+97,medium,messageHow,And so on.,other
+97,medium,messageHow,When you can't combine more drop for later or collect depending on the moves you have left.,strategy
+97,medium,messageRules,You can combine with colors or patterns that are different.,rule
+97,medium,messageRules,The triangles combine only with the diamonds and vice versa.,rule
+97,medium,messageRules,The squares combine only with the circles and vice versa.,rule
+12,medium,messageHow,use arrows to cotrol the game,tip
+12,medium,messageRules,using space bar to combine or fuse items,tip
+120,medium,messageHow,I found that once I found a combination of shapes if I kept going for the same shape then the points would keep multiplying.,strategy
+120,medium,messageHow,I didn't notice any patterns between the different shadings of shapes only the actual shapes themselves.,other
+120,medium,messageHow,Once you get a purple gem don't forget to bank it as any other combinations won't increase value!,tip
+120,medium,messageRules,Triangle + Diamond (can keep stacking more diamonds) Square + Circle (again keep stacking circles) REMEMBER to pick up in the order stated (not sure what'll happen the opposite way),rule

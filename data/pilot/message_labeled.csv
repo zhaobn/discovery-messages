@@ -1,0 +1,92 @@
+id,condition,source_col,sentence,label
+5,hard,messageHow,Collect as many as you can using the hints you are provided!,strategy
+5,hard,messageRules,"Using the arrow keys, work around the planet collecting diamonds.",tip
+5,hard,messageRules,"Fuse these together where possible, using the spacebar.",tip
+6,hard,messageHow,"diamond and triangles, and squares and circles until you get a blue diamond or circle",rule
+6,hard,messageRules,Diamonds and triangles go together.,rule
+6,hard,messageRules,Circles and squares go together,rule
+7,medium,messageHow,I suggest just try different combinations until you find one that works,strategy
+7,medium,messageRules,Remember patterns that work well together,strategy
+8,easy,messageHow,No idea reallly!,other
+8,easy,messageRules,to pair up red shapes,rule
+9,hard,messageHow,diamond & circle combine,rule
+9,hard,messageRules,Combine diamond + triangle circles and square go together,rule
+10,hard,messageHow,"Combine squares and circles, diamonds and traingles,",rule
+10,hard,messageRules,The best way to maximise is combining diamonds and triangles and combining circles and squares,strategy
+11,hard,messageHow,Diamond and triangle works best.,rule
+11,hard,messageHow,Circle and square next,rule
+11,hard,messageRules,Combine diamond and triangles.,rule
+12,hard,messageHow,"Combine diamonds and triangles together, don't forget to alternate patterns as well, that seems to have an effect",rule
+12,hard,messageRules,"Combine diamonds and triangles, then keep adding triangles circles and squares combine as well",rule
+13,hard,messageHow,triangle and a diamond make good triangle,rule
+13,hard,messageRules,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points.",rule
+13,hard,messageRules,Don't forget to harvest.,other
+13,hard,messageRules,"Do the same with circle + square, + square, etc.",rule
+13,hard,messageRules,Pattern doesn't matter.,rule
+14,hard,messageHow,"Try item pair the items together, and if there are cluster of items, you will get more points.",strategy
+14,hard,messageRules,"Combine diamond and triangle to make a better diamond, then another triangle",rule
+15,medium,messageHow,Try and get a combo of a different shape and colour,strategy
+15,medium,messageRules,Try and stick to the same combo once found,strategy
+16,easy,messageHow,try different variations,strategy
+16,easy,messageRules,Merge gems of the same shape,rule
+17,easy,messageHow,Match symbols of the same shape together,rule
+17,easy,messageRules,Gems of the same shape merge to make new gems.,rule
+17,easy,messageRules,Colour and pattern doesn't seem to matter.,rule
+18,easy,messageHow,The shape of the item matters so fuse together the same shapes to get the different colours,rule
+18,easy,messageRules,Try and remember what colour and shape go together so i can harvest the most points.,strategy
+18,easy,messageRules,The same shape seems to harvest the most when fusing them,strategy
+19,medium,messageHow,mix circles with squares and diamonds with triangles,rule
+19,medium,messageRules,triangles and diamonds squares and circle,rule
+20,medium,messageHow,"I tried multiple combinations and none worked,",other
+20,medium,messageRules,A combination of shapes will multiply the points if they are the same.,rule
+20,medium,messageRules,The actual shapes matter.,rule
+20,medium,messageRules,Bank purple gems.,tip
+21,medium,messageHow,"you either match squares and circles, or triangles and diamonds.",rule
+21,medium,messageHow,You can't match two with the same pattern.,rule
+21,medium,messageHow,"I started by matching a red triangle with a red diamond, to get an orange one (triangle or diamond), then match that with the opposite shape (so if it was an orange triangle i'd match with a diamond, and keep doing this until you get a purple gem and THEN press space to fuse/harvest for 100000 points",strategy
+21,medium,messageRules,"if two shapes mix, keep mixing the new crystal with the same shape to create new colours.",rule
+21,medium,messageRules,"Triangles combine with diamonds, squares only with circles etc.",rule
+21,medium,messageRules,You can combine different colours or patterns too If you get a purple gem don't forget to bank it,tip
+22,easy,messageHow,Just keep adding the same shapes together until they dont fuse anymore then collect them,strategy
+22,easy,messageRules,"Shape of the gems are more important than colour, merging same shapr = new gems",rule
+23,hard,messageHow,Make sure to understand how to pick up shapes,tip
+23,hard,messageRules,Remember to combine crystals,rule
+24,easy,messageHow,"Merge like shapes with each other such as square with square, circle with circle etc.",rule
+24,easy,messageHow,Wait until you get to the purple shape then press spacebar to obtain your points whilst holding the shape.,tip
+24,easy,messageRules,Merge same shapes with each other.,rule
+24,easy,messageRules,Hold off cashing out until I get to purple.,strategy
+25,hard,messageHow,same pattern goes together dont mix different patterns,rule
+25,hard,messageRules,striped go together.,rule
+25,hard,messageRules,circles do better diamonds and triangles go together circles and squares go together,rule
+26,hard,messageHow,"Fuse a diamond with a triangle, followed by multiple more triangles to get a blue diamond.",rule
+26,hard,messageHow,"Fuse a circle with a square, followed by multiple more squares to get a blue circle.",rule
+26,hard,messageHow,Aim to fuse similar patterns.,strategy
+26,hard,messageRules,"I want to combine diamond and triangles, and circles and squares.",rule
+26,hard,messageRules,"Once combined, combine 2 more triangles (for first one) and 2 more squares (for second one).",rule
+27,hard,messageHow,Really hard from tips.,other
+27,hard,messageHow,"but just when you find a high diamond, scroll over to see  what types you have already clicked and avoid similar.",tip
+27,hard,messageHow,"at times take a lot of hunting, start with red plain diamond and fuse with red triangle then orange diamond and red squared triangle fused , then green spotted diamond with red spotted triangle .",strategy
+27,hard,messageRules,The one that makes the most points diamond and triangle and another triangle,other
+28,medium,messageHow,"If you get a colour that is not red, mix it with something else before claiming it.",tip
+28,medium,messageHow,You will get more points.,other
+28,medium,messageRules,Triangle + diamond Square + circle.,rule
+28,medium,messageRules,Keep mixing new shapes,strategy
+29,easy,messageHow,"Concentrate on picking up items of the same shape, collect as many as you can until you get to purple, when you should cash in for maximum points.",strategy
+29,easy,messageRules,you need to merge gems of the same shape to make new gems.,rule
+29,easy,messageRules,"Pair up all of the same shapes first, when you have paired up enough to get to purple cash it in for points.",strategy
+29,easy,messageRules,Certain colours/patterns do not fuse together.,rule
+30,medium,messageHow,"Remember to bank the points when reach purple To fuse items you need to combine either: Triangle first, followed by only diamonds OR Square first, followed by only circles The only other rule is: Do not try to fuse like shaded items together - the shading patterns of the shapes must be different.",rule
+30,medium,messageRules,Bank on PURPLE  Triangle + Diamond + Diamond + Diamond  Square + Circle + Circle + Circle,other
+31,hard,messageHow,"combine a solid red diamond with a patterned triangles until it goes blue then harvest, then move to a square and combine with circles until turns blue, then grab a triangle and combine with diamonds and finally get a circle and combine with the remaining squares",rule
+31,hard,messageRules,"diamonds and triangles, circles and squares",other
+32,medium,messageHow,focus on mixing circles with squares.,strategy
+32,medium,messageHow,Don't forget to bank the points when you hit a blue shape or better,tip
+32,medium,messageRules,"aim for high value shapes, keep attempting the same shapes by fusing",strategy
+33,medium,messageHow,"Keep referring back to the list of Found Recipes on the right, as this will remind you what worked and what didn't.",tip
+33,medium,messageHow,Remember you don't have to harvest crystals straight away.,strategy
+33,medium,messageHow,The big rewards come when you are carrying a high value crystal and succeed in merging it with another crystal to create one of even higher value.,strategy
+33,medium,messageRules,triangles combine only with the diamonds and vice versa.,rule
+33,medium,messageRules,The squares combine only with the circles and vice versa.,rule
+33,medium,messageRules,"Following this, choose a figure to start with and start matching with its geometric partner that has a different color or pattern.",strategy
+33,medium,messageRules,Once you get a purple gem don't forget to bank it as any other combinations won't increase value!,tip
+33,medium,messageRules,"Always check out the hints for each block at the top, you can plan your moves this way before randomly trying to find out what works best.",strategy

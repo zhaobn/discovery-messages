@@ -157,6 +157,131 @@ ggplot(level_data_summary, aes(x = step, y = mean_highest_level, color = gen)) +
 
 
 
+# distribution of msg_rank per condition
+browse_data %>%
+  ggplot(aes(x = condition, y = msg_rank)) +
+  geom_violin(trim = FALSE) +
+  geom_jitter(width = 0.1, alpha = 0.2)
+
+# total times_read per sub_id per condition
+browse_data %>%
+  group_by(sub_id, condition) %>%
+  summarise(total_times_read = sum(times_read), .groups = "drop") %>%
+  ggplot(aes(x = condition, y = total_times_read)) +
+  geom_violin(trim = FALSE) +
+  geom_jitter(width = 0.1, alpha = 0.2)
+
+# total number of messages per sub_id per condition
+browse_data %>%
+  group_by(sub_id, condition) %>%
+  summarise(total_msgs = n(), .groups = "drop") %>%
+  ggplot(aes(x = condition, y = total_msgs)) +
+  geom_violin(trim = FALSE) +
+  geom_jitter(width = 0.1, alpha = 0.2)
+
+
+# aggregate to subject level
+plot_data <- browse_data %>%
+  group_by(sub_id, condition) %>%
+  mutate(dwell_m = dwell_ms/60000) %>%
+  summarise(
+    total_read = sum(times_read),
+    total_dwell = sum(dwell_m),
+    total_points_log = first(log_total_points),
+    .groups = "drop"
+  )
+
+plot_data %>%
+  ggplot(aes(x = total_read, y = total_points_log)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~condition)
+plot_data %>%
+  ggplot(aes(x = total_dwell, y = total_points_log)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~condition)
+
+# distribution of msg_rank per condition
+notebook_data %>%
+  ggplot(aes(x = condition, y = msg_rank)) +
+  geom_violin(trim = FALSE) +
+  geom_jitter(width = 0.1, alpha = 0.2)
+
+# average msg_rank per sub_id + relationship with log_total_points
+notebook_data %>%
+  group_by(sub_id, condition) %>%
+  summarise(
+    avg_msg_rank = mean(msg_rank),
+    log_total_points = first(log_total_points),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = avg_msg_rank, y = log_total_points)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~condition)
+
+
+
+
+# Check labeled data ----
+msg_lab_pilot <- read.csv('../data/pilot/message_labeled_fixed.csv')
+msg_lab_prev <- read.csv('../data/g0/message_sample_labeled_fixed.csv')
+
+msg_lab_pilot <- msg_lab_pilot %>% mutate(id = 1000 + as.integer(id), batch = 'pilot')
+msg_lab_prev <- msg_lab_prev %>% mutate(batch = 'prev')
+
+msg_merged <- rbind(msg_lab_pilot, msg_lab_prev)
+
+
+msg_merged$s_len <- nchar(msg_merged$sentence)
+msg_merged$condition <- factor(
+  msg_merged$condition,
+  levels = cond_levels
+)
+
+msg_merged %>%
+  filter(label == "rule") %>%
+  mutate(batch = factor(batch, levels = c("prev", "pilot"))) %>%
+  ggplot(aes(x = condition, y = s_len, fill = batch)) +
+  stat_summary(fun = mean, geom = "bar", position = position_dodge()) +
+  stat_summary(fun.data = mean_se, geom = "errorbar",
+               position = position_dodge(width = 0.9), width = 0.2)
+  # geom_jitter(aes(color = batch),
+  #             position = position_jitterdodge(jitter.width = 0.1, dodge.width = 0.9),
+  #             alpha = 0.2)
+
+
+msg_merged %>%
+  mutate(batch = factor(batch, levels = c("prev", "pilot"))) %>%
+  mutate(label = factor(label, levels = c("rule", "strategy", "tip", "other"))) %>%
+  group_by(condition, label, batch) %>%
+  summarise(total_s_len = sum(s_len), .groups = "drop") %>%
+  group_by(condition) %>%
+  mutate(prop = total_s_len / sum(total_s_len)) %>%
+  ggplot(aes(x = condition, y = prop, fill = label)) +
+  geom_bar(stat = "identity", position = "fill") +
+  facet_wrap(~batch)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
