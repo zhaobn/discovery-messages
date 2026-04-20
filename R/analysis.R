@@ -9,7 +9,7 @@ options(scipen=999)
 
 # Demographics ----
 
-subject_data = read.csv('../data/pilot/subject_cleaned.csv')
+subject_data = read.csv('../data/pilot_2/subject.csv')
 
 reportStats <- function(vec, digits=2) {
   return(paste0(round(mean(vec, na.rm = TRUE), digits), '\\pm', 
@@ -45,11 +45,14 @@ ggplot(subject_data, aes(x = condition, y = total_points_log, fill = condition))
 
 
 # Points per action ----
-action_data = read.csv('../data/pilot/actions_cleaned.csv') %>% select(-X)
+action_data = read.csv('../data/pilot_2/actions.csv') %>% select(-X)
 action_data$condition <- factor(action_data$condition, levels = cond_levels)
 
 action_data_summary = action_data %>%
-  mutate(total_points_log = log(total_points+1)) %>%
+  mutate(total_points_log = log(total_points + 1)) %>%
+  group_by(sub_id, condition) %>%
+  complete(step = 1:40) %>%
+  fill(total_points_log, .direction = "down") %>%
   group_by(step, condition) %>%
   summarise(
     mean_total_points_log = mean(total_points_log, na.rm = TRUE),
@@ -69,12 +72,12 @@ action_data_summary %>%
 
 
 # Compare with prev. generation ----
-
 prev_action_data = read.csv('../data/g0/actions_sampled.csv') %>% select(-c(X, token)) %>%
   rename(step=action_id) %>%
   mutate(gen='gen_0')
 
 combined_action_data = action_data %>%
+  rename(id=sub_id) %>%
   mutate(gen='gen_1', id = id+1000) %>%
   select(colnames(prev_action_data)) %>%
   rbind(prev_action_data)
@@ -82,6 +85,9 @@ combined_action_data$condition <- factor(combined_action_data$condition, levels 
 
 combined_data_summary = combined_action_data %>%
   mutate(total_points_log = log(total_points+1)) %>%
+  group_by(id, condition, gen) %>%
+  complete(step = 1:40) %>%
+  fill(total_points_log, .direction = "down") %>%
   group_by(step, condition, gen) %>%
   summarise(
     mean_total_points_log = mean(total_points_log, na.rm = TRUE),
@@ -106,8 +112,7 @@ combined_data_summary %>%
                   fill = condition), alpha = 0.2, color = NA) + 
   theme_minimal() +   
   labs(x = "Action ID", y = "Mean Log of Total Points") + 
-  theme(legend.position = "bottom") +
-  facet_grid(~condition)
+  facet_grid(condition ~ .)
 
 
 
@@ -120,10 +125,12 @@ combined_level_data = combined_action_data %>%
     as.numeric(sub(".*_(\\d+)$", "\\1", yield)),
     0
   ))
-combined_level_data <- combined_level_data %>%
-  group_by(id) %>%
+combined_level_data = combined_level_data %>%
+  group_by(id, condition, gen) %>%
   arrange(step) %>%
   mutate(highest_level = cummax(level)) %>%
+  complete(step = 1:40) %>%
+  fill(highest_level, .direction = "down") %>%
   ungroup()
 
 level_data_summary = combined_level_data %>%
@@ -152,12 +159,13 @@ ggplot(level_data_summary, aes(x = step, y = mean_highest_level, color = gen)) +
   geom_point(aes(shape = condition), size = 3) + 
   theme_minimal() +   
   labs(x = "Action ID", y = "Mean Highest Levels") + 
-  theme(legend.position = "bottom") +
-  facet_grid(~condition)
+  facet_grid(condition~.)
 
 
 
 # distribution of msg_rank per condition
+browse_data = read.csv('../data/pilot_2/browse.csv')
+browse_data$condition <- factor(browse_data$condition, levels = cond_levels)
 browse_data %>%
   ggplot(aes(x = condition, y = msg_rank)) +
   geom_violin(trim = FALSE) +
@@ -225,13 +233,20 @@ notebook_data %>%
 
 
 # Check labeled data ----
-msg_lab_pilot <- read.csv('../data/pilot/message_labeled_fixed.csv')
+msg_lab_pilot <- read.csv('../data/pilot_2/messages_labeled.csv')
 msg_lab_prev <- read.csv('../data/g0/message_sample_labeled_fixed.csv')
 
 msg_lab_pilot <- msg_lab_pilot %>% mutate(id = 1000 + as.integer(id), batch = 'pilot')
 msg_lab_prev <- msg_lab_prev %>% mutate(batch = 'prev')
 
-msg_merged <- rbind(msg_lab_pilot, msg_lab_prev)
+msg_merged <- rbind(msg_lab_pilot, msg_lab_prev) %>%
+  mutate(
+    source_col = recode(
+      source_col,
+      "messageHow" = "message_how",
+      "messageRules" = "message_rules"
+    )
+  )
 
 
 msg_merged$s_len <- nchar(msg_merged$sentence)
@@ -241,18 +256,23 @@ msg_merged$condition <- factor(
 )
 
 msg_merged %>%
+  filter(source_col != 'summary') %>% 
   filter(label == "rule") %>%
+  group_by(id, condition, batch) %>%
+  summarise(mean_s_len = mean(s_len), .groups = "drop") %>%
   mutate(batch = factor(batch, levels = c("prev", "pilot"))) %>%
-  ggplot(aes(x = condition, y = s_len, fill = batch)) +
+  ggplot(aes(x = condition, y = mean_s_len, fill = batch)) +
   stat_summary(fun = mean, geom = "bar", position = position_dodge()) +
   stat_summary(fun.data = mean_se, geom = "errorbar",
-               position = position_dodge(width = 0.9), width = 0.2)
+               position = position_dodge(width = 0.9), width = 0.2) +
+  labs(x = NULL, y = "average rule length")
   # geom_jitter(aes(color = batch),
-  #             position = position_jitterdodge(jitter.width = 0.1, dodge.width = 0.9),
-  #             alpha = 0.2)
+  #             position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.9),
+  #             alpha = 0.6, size = 2, show.legend = FALSE)
 
 
 msg_merged %>%
+  filter(source_col != 'summary') %>% 
   mutate(batch = factor(batch, levels = c("prev", "pilot"))) %>%
   mutate(label = factor(label, levels = c("rule", "strategy", "tip", "other"))) %>%
   group_by(condition, label, batch) %>%
@@ -261,9 +281,14 @@ msg_merged %>%
   mutate(prop = total_s_len / sum(total_s_len)) %>%
   ggplot(aes(x = condition, y = prop, fill = label)) +
   geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~batch)
+  facet_wrap(~batch) +
+  theme(legend.position = 'bottom')
 
 
+msg_merged %>%
+  filter(source_col == "summary") %>%
+  ggplot(aes(x = condition, fill = label)) +
+  geom_bar(position = "fill")
 
 
 

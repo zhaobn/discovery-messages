@@ -9,8 +9,8 @@ library(stringr)
 
 # Global setting
 options(scipen = 999)
-INPUT_FILE <- "../data/pilot/raw_1.tsv" 
-OUTPUT_DIR <- "../data/pilot/" 
+INPUT_FILE <- "../data/pilot_2/raw.tsv" 
+OUTPUT_DIR <- "../data/pilot_2/" 
 
 
 # Read raw data
@@ -24,12 +24,12 @@ raw <- raw %>%
 # Filter rows
 clean <- raw %>% 
   mutate(id = as.numeric(as.character(id))) %>%
-  filter(id > 4)
+  filter(id > 37)
 
-# Ad-hoc fixes
-x <- clean$subject[13]
-x_fixed <- gsub('matter\\.\\\\\\\\\\\\\"\\\\\"', 'matter.\\\\\"', x, fixed = FALSE)
-clean$subject[13] <- x_fixed
+# # Ad-hoc fixes
+# x <- clean$subject[13]
+# x_fixed <- gsub('matter\\.\\\\\\\\\\\\\"\\\\\"', 'matter.\\\\\"', x, fixed = FALSE)
+# clean$subject[13] <- x_fixed
 
 # Helper functions to parse json
 fix_json <- function(s) {
@@ -65,6 +65,7 @@ subject <- clean %>%
     feedback                  = map_chr(parsed, \(x) x[["feedback"]]                  %||% NA_character_),
     summary                   = map_chr(parsed, \(x) x[["summary"]]                   %||% NA_character_),
     message_how               = map_chr(parsed, \(x) x[["messageHow"]]                %||% NA_character_),
+    message_rules             = map_chr(parsed, \(x) x[["messageRules"]]              %||% NA_character_),
     start_time                = map_chr(parsed, \(x) x[["start_time"]]                %||% NA_character_),
     allow_regeneration        = map_lgl(parsed, \(x) isTRUE(x[["allow_regeneration"]])),
     total_points              = map_int(parsed, \(x) as.integer(x[["total_points"]]   %||% NA)),
@@ -78,7 +79,7 @@ subject <- clean %>%
     sub_id = id, worker, assignment, created_at, token, condition,
     age, sex, engagement, difficulty, feedback,
     start_time, allow_regeneration, total_points,
-    summary, message_how,
+    summary, message_how, message_rules,
     # instruction_duration_ms, browse_duration_ms, 
     reflect_duration_ms,
     task_duration_ms, composition_duration_ms
@@ -217,36 +218,28 @@ msgs_read <- clean %>%
 
 
 # Write CSVs 
-write_csv(subject,   file.path(OUTPUT_DIR, "subject.csv"))
+write_csv(select(subject, -worker),   file.path(OUTPUT_DIR, "subject.csv"))
 write_csv(events,    file.path(OUTPUT_DIR, "events.csv"))
 write_csv(actions,   file.path(OUTPUT_DIR, "actions.csv"))
 write_csv(msgs_read, file.path(OUTPUT_DIR, "msgs_read.csv"))
 write_csv(notebook,  file.path(OUTPUT_DIR, "notebook.csv"))
 
 
-# Prep for data sharing - remove prolific IDs
-subject_data = read.csv('../data/pilot/subject.csv')
-bonus_data = subject_data %>%
-  mutate(bonus = log(total_points+1)/10) %>%
-  select(worker, bonus)
-write.csv(bonus_data, file = '../data/pilot/bonus.csv')
+bonus_data = subject %>%
+  mutate(bonus = round(log(total_points+1)/10, 2)) %>%
+  select(worker, bonus) %>%
+  filter(bonus > 0)
+write.csv(bonus_data, file.path(OUTPUT_DIR, "bonus.csv"), row.names = FALSE)
 
-subject_cleaned = subject_data %>%
-  select(id = sub_id, 
-         condition, 
-         messageHow = message_how, messageRules = summary, total_points,
-         age, sex, engagement, difficulty, feedback, 
-         task_duration_ms, reflect_duration_ms, composition_duration_ms)
-write.csv(subject_cleaned, file = '../data/pilot/subject_cleaned.csv')
 
 # append condition to action data
-id_cond = subject_cleaned %>% select(id, condition)
+id_cond = subject %>% select(sub_id, condition=assignment)
 action_data = read.csv('../data/pilot/actions.csv') 
-action_data_cleaned = action_data %>%
-  rename(id=sub_id, step=act_id) %>%
+action_data_cleaned = actions %>%
+  rename(step=act_id) %>%
   filter(step <= 40) %>% 
-  left_join(id_cond, by='id')
-write.csv(action_data_cleaned, file = '../data/pilot/actions_cleaned.csv')
+  left_join(id_cond, by='sub_id')
+write.csv(action_data_cleaned, file.path(OUTPUT_DIR, "actions.csv"))
 
 
 # get cleaned message data
@@ -257,23 +250,18 @@ write.csv(message_data, file = '../data/pilot/message_data.csv')
 
 
 # Message reading ----
-browse_data = read.csv('../data/pilot/msgs_read.csv')
-notebook_data =  read.csv('../data/pilot/notebook.csv')
-notebook_data = notebook_data %>%
-  mutate(prev_player_id = as.integer(substr(msg_from, 9,100)))
-
-id_conds = subject_data %>% 
-  select(sub_id = id, condition, total_points) %>%
+id_conds = subject %>% 
+  select(sub_id, condition, total_points) %>%
   mutate(log_total_points = log(total_points + 1))
-browse_data = browse_data %>% left_join(id_conds, by = 'sub_id')
-notebook_data = notebook_data %>% left_join(id_conds, by = 'sub_id')
+browse_data = msgs_read %>% left_join(id_conds, by = 'sub_id')
 
-browse_data$condition <- factor(browse_data$condition, levels = cond_levels)
-notebook_data$condition <- factor(notebook_data$condition, levels = cond_levels)
-notebook_data <- notebook_data %>% rename(msg_rank = prev_player_id)
+notebook_data = notebook %>% left_join(id_conds, by = 'sub_id')
+notebook_data <- notebook_data %>%
+  mutate(prev_player_id = as.integer(substr(msg_from, 9,100))) %>%
+  rename(msg_rank = prev_player_id)
 
-write.csv(browse_data, file = '../data/pilot/browse_cleaned.csv')
-write.csv(notebook_data, file = '../data/pilot/notebook_cleaned.csv')
+write.csv(browse_data, file = '../data/pilot_2/browse.csv')
+write.csv(notebook_data, file = '../data/pilot_2/notebook.csv')
 
 
 

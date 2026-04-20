@@ -10,8 +10,11 @@ from openai import OpenAI
 # DATA_PATH   = "../data/pilot/message_data.csv"
 # OUTPUT_PATH  = "../data/pilot/message_labeled.csv"
 
-DATA_PATH   = "../data/g0/message_sample.csv"
-OUTPUT_PATH  = "../data/g0/message_sample_labeled.csv"
+# DATA_PATH   = "../data/g0/message_sample.csv"
+# OUTPUT_PATH  = "../data/g0/message_sample_labeled.csv"
+
+DATA_PATH   = "../data/pilot_2/subject.csv"
+OUTPUT_PATH  = "../data/pilot_2/messages_labeled.csv"
 
 df_raw = pd.read_csv(DATA_PATH)
 df_raw.head(2)
@@ -30,13 +33,13 @@ def load_and_explode(path: str) -> pd.DataFrame:
     df = pd.read_csv(path)
     rows = []
     for _, row in df.iterrows():
-        for col in ["messageHow", "messageRules"]:
+        for col in ["message_how", "message_rules", "summary"]:
             text = row.get(col, "")
             if pd.isna(text) or not str(text).strip():
                 continue
             for sentence in split_sentences(str(text)):
                 rows.append({
-                    "id": row["id"],
+                    "id": row["sub_id"],
                     "condition": row["condition"],
                     "source_col": col,
                     "sentence": sentence,
@@ -48,7 +51,7 @@ df = load_and_explode(DATA_PATH)
 print(f"Total sentences extracted: {len(df)}")
 
 # Save the exploded sentences for review before labeling
-# df.to_csv('../data/g0/messages_split.csv', index=False) 
+df.to_csv('../data/pilot_2/messages_split.csv', index=False) 
 
 
 
