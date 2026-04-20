@@ -84,6 +84,17 @@ function removeSpecial (text) {
   text = text.replace(/(\r\n|\n|\r|\t)/gm, " ")
   return text
 }
+/**
+ * Removes specific special characters from free text input to prevent parsing issues.
+ * Excludes: quotation marks (" ' ` ), backslashes (\), and symbols: @ # $ % ^ *
+ * Everything else (letters, numbers, punctuation, brackets, etc.) is kept as-is.
+ */
+function sanitizeText(text) {
+  return text
+    .replace(/["'`\\@#$%^*]/g, '')
+    .trim();
+}
+
 function generateToken (length) {
   let tokens = '';
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

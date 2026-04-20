@@ -69,9 +69,9 @@ with open(OUTPUT_PATH, "w") as f:
 # %%
 # Prep second pilot
 # Paths 
-PILOT_PATH   = "../data/pilot/message_data.csv"
+PILOT_PATH   = "../data/pilot_2/subject.csv"
 PREVIEW_PATH = "../data/g0/message_sample.csv"
-OUTPUT_PATH  = "../data/pilot/messages_p1.js"
+OUTPUT_PATH  = "../data/pilot_2/messages_p1.js"
 
 SAMPLE_N = 10
 RANDOM_SEED = 42
@@ -80,11 +80,12 @@ RANDOM_SEED = 42
 df_pilot = pd.read_csv(PILOT_PATH)
 df_prev  = pd.read_csv(PREVIEW_PATH)
 
-df_pilot["id"] = df_pilot["id"] + 1000
+df_pilot["id"] = df_pilot["sub_id"] + 1000
 df_pilot["total_points_log"] = np.log1p(df_pilot["total_points"]+1)
 df_prev["total_points_log"]  = np.log1p(df_prev["total_points"])
 
 cols = ["id", "condition", "messageHow", "messageRules", "total_points"]
+df_pilot.rename(columns={"message_how": "messageHow", "message_rules": "messageRules"}, inplace=True)
 
 result = []
 
@@ -105,11 +106,13 @@ for cond in df_pilot["condition"].unique():
     n_needed = SAMPLE_N - len(pilot_sample)
 
     if n_needed > 0:
-        prev_sample = prev_subset.sample(
-            n=n_needed,
-            weights=prev_subset["total_points_log"],
-            random_state=RANDOM_SEED
-        )
+        # use top k because sample size is too small for weighted sampling to be effective
+        prev_sample = prev_subset.nlargest(n=n_needed, columns="total_points_log")
+        # prev_sample = prev_subset.sample(
+        #     n=n_needed,
+        #     weights=prev_subset["total_points_log"],
+        #     random_state=RANDOM_SEED
+        # )
         combined = pd.concat([pilot_sample, prev_sample], ignore_index=True)
     else:
         combined = pilot_sample
@@ -118,15 +121,16 @@ for cond in df_pilot["condition"].unique():
 
 # Final dataframe
 df_final = pd.concat(result, ignore_index=True)[cols]
-# df_final.to_csv('../data/pilot_2/message.csv', index=False)
+
+df_final["rank"] = df_final.groupby("condition")["total_points"].rank(method="first", ascending=False)
+df_final = df_final.sort_values(["condition", "rank"], ascending=[True, True])
+df_final["sample_id"] = range(1, len(df_final) + 1)
+
+df_final[["sample_id", "id", "messageHow", "messageRules", "total_points"]].to_csv('../data/pilot_2/message.csv', index=False)
 
 
 # %%
 # Save (JS format)
-# Sort within condition by total_points (descending), then assign sample_id
-df_final = df_final.sort_values(["condition", "total_points"], ascending=[True, False])
-df_final["sample_id"] = df_final.groupby("condition").cumcount() + 1
-
 messages = {}
 for cond, subdf in df_final.groupby("condition"):
     messages[cond] = subdf[

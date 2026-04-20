@@ -122,20 +122,20 @@ function grid_done() {
 // Message composer
 function handle_submit() {
   const composerTextHow = document.getElementById('composer-text-how').value;
-  // const composerTextRules = document.getElementById('composer-text-rules').value;
+  const composerTextRules = document.getElementById('composer-text-rules').value;
 
-  // if (composerTextHow === "" || composerTextRules === "") {
-  //   alert("Please type your message in both text areas. You will be bonused for the quality of your message.");
-  //   return;
-  // }
-
-  if (composerTextHow === "") {
-    alert("Please type your message in the text area. You will be bonused for the quality of your message.");
+  if (composerTextHow === "" || composerTextRules === "") {
+    alert("Please type your message in both text areas. You will be bonused for the quality of your message.");
     return;
   }
 
-  subjectData['messageHow'] = composerTextHow;
-  // subjectData['messageRules'] = composerTextRules;
+  // if (composerTextHow === "") {
+  //   alert("Please type your message in the text area. You will be bonused for the quality of your message.");
+  //   return;
+  // }
+
+  subjectData['messageHow'] = sanitizeText(composerTextHow);
+  subjectData['messageRules'] = sanitizeText(composerTextRules);
 
   let message_done_time = new Date();
   subjectData['composition_duration'] = message_done_time - task_end_time;

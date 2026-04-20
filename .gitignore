@@ -11,3 +11,6 @@ experiment/.vscode/
 experiment/php/db_config.php
 experiment/php/colab_db_config.php
 
+no_public/
+bonus.csv
+raw*

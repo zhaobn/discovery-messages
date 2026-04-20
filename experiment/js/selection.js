@@ -91,8 +91,8 @@ function openMsgModal(sampleId) {
 
   const rank = msgState.conditionMessages.indexOf(msg) + 1;
   document.getElementById('msg-modal-rank').textContent = `#${rank}`;
-  document.getElementById('msg-modal-how').textContent = msg.messageHow;
-  document.getElementById('msg-modal-rules').textContent = msg.messageRules;
+  document.getElementById('msg-modal-how').textContent = msg.messageHow.replace(/\\n+/g, ' ');
+  document.getElementById('msg-modal-rules').textContent = msg.messageRules.replace(/\\n+/g, ' ')  
   document.getElementById('msg-modal-overlay').style.display = 'flex';
 
   msgState.readIds.add(sampleId);
@@ -222,7 +222,7 @@ function handleReflectDone() {
   subjectData['messages_reflect_duration'] = reflect_end - messages_reflect_start_time;
   
   subjectData.notebook = msgState.notebook.map(e => ({ from: e.from, text: e.text, sampleId: e.sampleId }));
-  subjectData.summary = document.getElementById('reflect-text').value.trim();
+  subjectData.summary = sanitizeText(document.getElementById('reflect-text').value.trim());
   
   notesData.condition = COND;
   notesData.msgsRead = msgState.dwellTimes;
