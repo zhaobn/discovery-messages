@@ -9,7 +9,7 @@ options(scipen=999)
 
 # Demographics ----
 
-subject_data = read.csv('../data/pilot_2/subject.csv')
+subject_data = read.csv('../data/pilot_3/subject.csv')
 
 reportStats <- function(vec, digits=2) {
   return(paste0(round(mean(vec, na.rm = TRUE), digits), '\\pm', 
@@ -45,7 +45,7 @@ ggplot(subject_data, aes(x = condition, y = total_points_log, fill = condition))
 
 
 # Points per action ----
-action_data = read.csv('../data/pilot_2/actions.csv') %>% select(-X)
+action_data = read.csv('../data/pilot_3/actions.csv') %>% select(-X)
 action_data$condition <- factor(action_data$condition, levels = cond_levels)
 
 action_data_summary = action_data %>%
@@ -72,15 +72,21 @@ action_data_summary %>%
 
 
 # Compare with prev. generation ----
-prev_action_data = read.csv('../data/g0/actions_sampled.csv') %>% select(-c(X, token)) %>%
+action_gen_0 = read.csv('../data/g0/actions_sampled.csv') %>% select(-c(X, token)) %>%
   rename(step=action_id) %>%
   mutate(gen='gen_0')
 
-combined_action_data = action_data %>%
+action_gen_1 = read.csv('../data/pilot_2/actions.csv') %>% select(-X) %>%
   rename(id=sub_id) %>%
   mutate(gen='gen_1', id = id+1000) %>%
-  select(colnames(prev_action_data)) %>%
-  rbind(prev_action_data)
+  select(colnames(action_gen_0))
+
+combined_action_data = action_data %>%
+  rename(id=sub_id) %>%
+  mutate(gen='gen_2', id = id+2000) %>%
+  select(colnames(action_gen_0)) %>%
+  rbind(action_gen_1) %>%
+  rbind(action_gen_0)
 combined_action_data$condition <- factor(combined_action_data$condition, levels = cond_levels)
 
 combined_data_summary = combined_action_data %>%

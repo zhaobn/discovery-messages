@@ -1,0 +1,84 @@
+sub_id,msg_id,msg_from,note_text,saved_at,condition,total_points,log_total_points,msg_rank
+61,4,Player #4,Just keep matching the same shapes until the shape you have is purple then harvest. Dont pay attention to the patterns.,2026-04-21T08:32:35Z,easy,212110,12.26486500153706,4
+62,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T08:34:18Z,medium,200102,12.206587512963186,1
+63,2,Player #2,get the same shape until you find a purple colour,2026-04-21T08:33:26Z,easy,400040,12.899322320837353,2
+63,2,Player #2,"theres no time, so dont rush",2026-04-21T08:33:29Z,easy,400040,12.899322320837353,2
+63,3,Player #3,Gems of the same shape merge to make new gems. Colour and pattern doesn't seem to matter.,2026-04-21T08:33:36Z,easy,400040,12.899322320837353,3
+64,11,Player #1,Diamonds and triangles go together. Circles and squares go together,2026-04-21T08:32:58Z,hard,111000,11.6172944892629,1
+65,21,Player #1,I noticed that triangles combine with circles and squares with diamonds (vice versa).,2026-04-21T08:34:08Z,medium,111,4.718498871295094,1
+66,11,Player #1,Diamonds and triangles go together. Circles and squares go together,2026-04-21T08:39:54Z,hard,21140,9.958969561995133,1
+66,11,Player #1,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points. Don't forget to harvest. Do the same with circle + square, + square, etc. Pattern doesn't matter.",2026-04-21T08:40:00Z,hard,21140,9.958969561995133,1
+66,12,Player #2,Keep making triangles and diamonds until they turn blue,2026-04-21T08:40:13Z,hard,21140,9.958969561995133,2
+67,21,Player #1,I noticed that triangles combine with circles and squares with diamonds (vice versa).,2026-04-21T08:36:35Z,medium,110010,11.608335639774886,1
+67,22,Player #2,Triangle + Diamond (can keep stacking more diamonds) Square + Circle (again keep stacking circles) REMEMBER to pick up in the order stated (not sure what'll happen the opposite way),2026-04-21T08:37:09Z,medium,110010,11.608335639774886,2
+67,23,Player #3,"If you combine two shapes together and keep combing them, you move up in the crystal points rank",2026-04-21T08:37:25Z,medium,110010,11.608335639774886,3
+68,1,Player #1,"shapes merge with the same shape e.g. triangle with triangle, patterns dont seem to matter, shapes dont seem to merge with different shapes e.g. square with diamond",2026-04-21T08:39:39Z,easy,400040,12.899322320837353,1
+68,1,Player #1,only merge items of the shape shape - they always merged for me and no mixtures of shapes merged,2026-04-21T08:39:41Z,easy,400040,12.899322320837353,1
+68,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T08:39:48Z,easy,400040,12.899322320837353,2
+68,3,Player #3,Gems of the same shape merge to make new gems. Colour and pattern doesn't seem to matter.,2026-04-21T08:39:58Z,easy,400040,12.899322320837353,3
+68,4,Player #4,Just keep matching the same shapes until the shape you have is purple then harvest. Dont pay attention to the patterns,2026-04-21T08:40:06Z,easy,400040,12.899322320837353,4
+68,3,Player #3,Merging gems of the same shape produced new gems. Attempting to merge gems of differing shapes failed every time in my trials.,2026-04-21T08:40:22Z,easy,400040,12.899322320837353,3
+69,21,Player #1,"Triangles with Circles, and Squares with Diamonds",2026-04-21T08:40:27Z,medium,164,5.10594547390058,1
+69,22,Player #2,Triangle + Diamond (can keep stacking more diamonds) Square + Circle (again keep stacking circles),2026-04-21T08:40:37Z,medium,164,5.10594547390058,2
+70,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.\nFusion rules & patterns:\n\nI noticed that triangles combine with circles and squares with diamonds (vice versa).",2026-04-21T08:41:06Z,medium,12,2.5649493574615367,1
+71,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T08:40:35Z,medium,10,2.3978952727983707,1
+72,11,Player #1,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points. Don't forget to harvest. Do the same with circle + square, + square, etc. Pattern doesn't matter.",2026-04-21T08:39:51Z,hard,20409,9.92378025580389,1
+72,11,Player #1,Diamonds and triangles go together. Circles and squares go together,2026-04-21T08:40:03Z,hard,20409,9.92378025580389,1
+73,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T08:42:42Z,medium,334,5.814130531825066,1
+73,22,Player #2,I found that once I found a combination of shapes if I kept going for the same shape then the points would keep multiplying. I didn't notice any patterns between the different shadings of shapes only the actual shapes themselves. Once you get a purple gem don't forget to bank it as any other combinations won't increase value!,2026-04-21T08:42:52Z,medium,334,5.814130531825066,2
+73,30,Player #10,Square + Circle. Triangle + Diamond.,2026-04-21T08:43:28Z,medium,334,5.814130531825066,10
+74,11,Player #1,"Combine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points.",2026-04-21T10:08:17Z,hard,21022,9.953372355465126,1
+74,11,Player #1,"Do the same with circle + square, + square, etc.",2026-04-21T10:08:31Z,hard,21022,9.953372355465126,1
+74,14,Player #4,"Diamond, triangle, triangle was a good combination",2026-04-21T10:08:38Z,hard,21022,9.953372355465126,4
+75,21,Player #1,I noticed that triangles combine with circles and squares with diamonds,2026-04-21T10:09:55Z,medium,301014,12.61491537637639,1
+76,21,Player #1,"Triangles with Circles, and Squares with Diamonds",2026-04-21T10:10:16Z,medium,300031,12.61164441461652,1
+76,21,Player #1,"purple colour, bank it",2026-04-21T10:10:24Z,medium,300031,12.61164441461652,1
+77,10,Player #10,Each pattern on the shape can only be matched in a sequence once,2026-04-21T10:10:49Z,easy,200020,12.20617764001806,10
+77,5,Player #5,remember to press the space bar on a blank square to collect the points.,2026-04-21T10:11:40Z,easy,200020,12.20617764001806,5
+77,4,Player #4,Dont pay attention to the patterns,2026-04-21T10:11:56Z,easy,200020,12.20617764001806,4
+77,3,Player #3,Colour and pattern doesn't seem to matter.,2026-04-21T10:12:10Z,easy,200020,12.20617764001806,3
+77,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T10:12:21Z,easy,200020,12.20617764001806,2
+78,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T10:15:01Z,medium,100100,11.513934955263402,1
+79,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.\nFusion rules & patterns:\n\nI noticed that triangles combine with circles and squares with diamonds (vice versa).",2026-04-21T10:14:54Z,medium,101,4.624972813284271,1
+80,21,Player #1,noticed that triangles combine with circles and squares with diamonds (vice versa).,2026-04-21T10:14:06Z,medium,22,3.1354942159291497,1
+81,11,Player #1,Diamonds and triangles go together.,2026-04-21T10:18:28Z,hard,373,5.924255797414532,1
+81,11,Player #1,Circles and squares go together,2026-04-21T10:18:33Z,hard,373,5.924255797414532,1
+82,1,Player #1,"shapes merge with the same shape e.g. triangle with triangle, patterns dont seem to matter, shapes dont seem to merge with different shapes e.g. square with diamond",2026-04-21T10:19:53Z,easy,310041,12.644463051155187,1
+83,1,Player #1,"shapes merge with the same shape e.g. triangle with triangle, patterns dont seem to matter, shapes dont seem to merge with different shapes",2026-04-21T10:13:08Z,easy,4011,8.297045149081827,1
+83,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T10:13:17Z,easy,4011,8.297045149081827,2
+83,3,Player #3,Colour and pattern doesn't seem to matter.,2026-04-21T10:13:31Z,easy,4011,8.297045149081827,3
+83,4,Player #4,keep matching the same shapes until the shape you have is purple then harvest. Dont pay attention to the patterns.,2026-04-21T10:13:48Z,easy,4011,8.297045149081827,4
+83,5,Player #5,remember to press the space bar on a blank square to collect the points,2026-04-21T10:14:02Z,easy,4011,8.297045149081827,5
+83,6,Player #6,Circles gave me more points in the end.,2026-04-21T10:14:11Z,easy,4011,8.297045149081827,6
+83,8,Player #8,remember to drop - I forgot and got fewer points,2026-04-21T10:14:29Z,easy,4011,8.297045149081827,8
+84,1,Player #1,"shapes merge with the same shape e.g. triangle with triangle, patterns dont seem to matter, shapes dont seem to merge with different shapes e.g. square with diamond",2026-04-21T10:18:24Z,easy,40222,10.602194250301306,1
+84,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T10:18:32Z,easy,40222,10.602194250301306,2
+84,3,Player #3,Gems of the same shape merge to make new gems. Colour and pattern doesn't seem to matter.,2026-04-21T10:18:44Z,easy,40222,10.602194250301306,3
+84,5,Player #5,"Collect the same shapes as one another, remember to press the space bar on a blank square to collect the points.",2026-04-21T10:19:01Z,easy,40222,10.602194250301306,5
+84,10,Player #10,"Match the same shapes (triangles with triangles). Each pattern on the shape can only be matched in a sequence once (for example, a plain triangle can match a dotty one, but it cant then go back and match another plain).",2026-04-21T10:19:36Z,easy,40222,10.602194250301306,10
+85,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T10:16:16Z,easy,121,4.804021044733257,2
+85,3,Player #3,Gems of the same shape merge to make new gems. Colour and pattern doesn't seem to matter.,2026-04-21T10:16:23Z,easy,121,4.804021044733257,3
+86,21,Player #1,") - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase",2026-04-21T10:18:30Z,medium,100000,11.51293546492023,1
+86,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T10:18:42Z,medium,100000,11.51293546492023,1
+86,22,Player #2,I found that once I found a combination of shapes if I kept going for the same shape then the points would keep multiplying,2026-04-21T10:18:55Z,medium,100000,11.51293546492023,2
+87,11,Player #1,"Tips & strategies:\n\nCombine diamond + triangle to make a better diamond, then another triangle, then another triangle, to get to a blue diamond for high points. Don't forget to harvest. Do the same with circle + square, + square, etc. Pattern doesn't matter.\nFusion rules & patterns:\n\nDiamonds and triangles go together. Circles and squares go together",2026-04-21T10:21:59Z,hard,200316,12.20765639074339,1
+88,1,Player #1,"shapes merge with the same shape e.g. triangle with triangle, patterns dont seem to matter, shapes dont seem to merge with different shapes e.g. square with diamond",2026-04-21T10:16:58Z,easy,1,0.6931471805599453,1
+88,1,Player #1,only merge items of the shape shape - they always merged for me and no mixtures of shapes merged,2026-04-21T10:17:02Z,easy,1,0.6931471805599453,1
+88,2,Player #2,get the same shape until you find a purple colour.,2026-04-21T10:17:11Z,easy,1,0.6931471805599453,2
+88,2,Player #2,"theres no time, so dont rush",2026-04-21T10:17:16Z,easy,1,0.6931471805599453,2
+88,3,Player #3,Gems of the same shape merge to make new gems. Colour and pattern doesn't seem to matter.,2026-04-21T10:17:26Z,easy,1,0.6931471805599453,3
+88,3,Player #3,Merging gems of the same shape produced new gems. Attempting to merge gems of differing shapes failed every time in my trials.,2026-04-21T10:17:30Z,easy,1,0.6931471805599453,3
+88,4,Player #4,Just keep matching the same shapes until the shape you have is purple then harvest. Dont pay attention to the patterns.,2026-04-21T10:17:41Z,easy,1,0.6931471805599453,4
+88,4,Player #4,Works with same shapes to combine,2026-04-21T10:17:47Z,easy,1,0.6931471805599453,4
+89,5,Player #5,remember to press the space bar on a blank square to collect the points.,2026-04-21T10:23:38Z,easy,300030,12.61164108163315,5
+89,6,Player #6,When purple cash in.,2026-04-21T10:23:56Z,easy,300030,12.61164108163315,6
+89,10,Player #10,"Each pattern on the shape can only be matched in a sequence once (for example, a plain triangle can match a dotty one, but it cant then go back and match another plain).",2026-04-21T10:24:07Z,easy,300030,12.61164108163315,10
+89,2,Player #2,"theres no time, so dont rush",2026-04-21T10:24:24Z,easy,300030,12.61164108163315,2
+89,3,Player #3,Merging gems of the same shape produced new gems. Attempting to merge gems of differing shapes failed every time in my trials.,2026-04-21T10:24:35Z,easy,300030,12.61164108163315,3
+90,22,Player #2,I found that once I found a combination of shapes if I kept going for the same shape then the points would keep multiplying. I didn't notice any patterns between the different shadings of shapes only the actual shapes themselves. Once you get a purple gem don't forget to bank it as any other combinations won't increase value!\nFusion rules & patterns:,2026-04-21T10:25:38Z,medium,4,1.6094379124341003,2
+90,21,Player #1,"Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work. P.s when you get to purple colour, bank it! the value wont increase.",2026-04-21T10:25:58Z,medium,4,1.6094379124341003,1
+90,23,Player #3,"Do not mindlessly click, try and figure out a pattern of what combines first. It is simpler than you think - if two shapes mix, keep mixing the new crystal with the same shape to create new colours!",2026-04-21T10:26:14Z,medium,4,1.6094379124341003,3
+91,12,Player #2,Diamonds and triangles seem to work the best.,2026-04-21T10:25:46Z,hard,21405,9.971426535544321,2
+91,12,Player #2,Keep making triangles and diamonds until they turn blue,2026-04-21T10:25:48Z,hard,21405,9.971426535544321,2
+91,14,Player #4,I found usually if the pattern on the symbol matched it guaranteed 100 points.,2026-04-21T10:26:01Z,hard,21405,9.971426535544321,4
+91,15,Player #5,"Combine triangle with diamonds and circles with squares, they must have the same pattern to work.",2026-04-21T10:26:18Z,hard,21405,9.971426535544321,5

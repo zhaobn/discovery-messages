@@ -147,8 +147,8 @@ const messages = {
     {
       "sample_id": 21,
       "id": 1052,
-      "messageHow": "Only combine Triangles with Diamonds, and Squares with Circles (and vice versa both) - no other combination will work.\\n\\nP.s when you get to purple colour, bank it! the value wont increase.",
-      "messageRules": "I noticed that triangles combine with diamonds and squares with circles (vice versa).",
+      "messageHow": "Only combine Triangles with Circles, and Squares with Diamonds (and vice versa both) - no other combination will work.\\n\\nP.s when you get to purple colour, bank it! the value wont increase.",
+      "messageRules": "I noticed that triangles combine with circles and squares with diamonds (vice versa).",
       "total_points": 202012
     },
     {

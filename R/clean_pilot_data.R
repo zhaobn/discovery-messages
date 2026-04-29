@@ -9,8 +9,8 @@ library(stringr)
 
 # Global setting
 options(scipen = 999)
-INPUT_FILE <- "../data/pilot_2/raw.tsv" 
-OUTPUT_DIR <- "../data/pilot_2/" 
+INPUT_FILE <- "../data/pilot_4/raw.tsv" 
+OUTPUT_DIR <- "../data/pilot_4/" 
 
 
 # Read raw data
@@ -24,7 +24,7 @@ raw <- raw %>%
 # Filter rows
 clean <- raw %>% 
   mutate(id = as.numeric(as.character(id))) %>%
-  filter(id > 37)
+  filter(id > 92)
 
 # # Ad-hoc fixes
 # x <- clean$subject[13]
@@ -234,7 +234,6 @@ write.csv(bonus_data, file.path(OUTPUT_DIR, "bonus.csv"), row.names = FALSE)
 
 # append condition to action data
 id_cond = subject %>% select(sub_id, condition=assignment)
-action_data = read.csv('../data/pilot/actions.csv') 
 action_data_cleaned = actions %>%
   rename(step=act_id) %>%
   filter(step <= 40) %>% 
@@ -243,10 +242,9 @@ write.csv(action_data_cleaned, file.path(OUTPUT_DIR, "actions.csv"))
 
 
 # get cleaned message data
-msg_g0 = read.csv('../data/g0/message_data.csv')
-message_data = subject_data %>%
-  select(id=sub_id, condition, messageHow = message_how, messageRules = summary, total_points)
-write.csv(message_data, file = '../data/pilot/message_data.csv')
+message_data = subject %>%
+  select(id=sub_id, condition, summary, message_how, message_rules,  total_points)
+write_csv(message_data,  file.path(OUTPUT_DIR, "messages.csv"))
 
 
 # Message reading ----
@@ -260,8 +258,8 @@ notebook_data <- notebook_data %>%
   mutate(prev_player_id = as.integer(substr(msg_from, 9,100))) %>%
   rename(msg_rank = prev_player_id)
 
-write.csv(browse_data, file = '../data/pilot_2/browse.csv')
-write.csv(notebook_data, file = '../data/pilot_2/notebook.csv')
+write_csv(browse_data, file.path(OUTPUT_DIR, 'browse.csv'))
+write_csv(notebook_data, file.path(OUTPUT_DIR, 'notebook.csv'))
 
 
 

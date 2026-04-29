@@ -13,8 +13,11 @@ from openai import OpenAI
 # DATA_PATH   = "../data/g0/message_sample.csv"
 # OUTPUT_PATH  = "../data/g0/message_sample_labeled.csv"
 
-DATA_PATH   = "../data/pilot_2/subject.csv"
-OUTPUT_PATH  = "../data/pilot_2/messages_labeled.csv"
+# DATA_PATH   = "../data/pilot_2/subject.csv"
+# OUTPUT_PATH  = "../data/pilot_2/messages_labeled.csv"
+
+DATA_PATH   = "../data/gen3_mix/subject.csv"
+OUTPUT_PATH  = "../data/gen3_mix/messages_labeled.csv"
 
 df_raw = pd.read_csv(DATA_PATH)
 df_raw.head(2)
@@ -43,6 +46,7 @@ def load_and_explode(path: str) -> pd.DataFrame:
                     "condition": row["condition"],
                     "source_col": col,
                     "sentence": sentence,
+                    "version": row["version"],
                 })
     return pd.DataFrame(rows)
 
@@ -51,7 +55,7 @@ df = load_and_explode(DATA_PATH)
 print(f"Total sentences extracted: {len(df)}")
 
 # Save the exploded sentences for review before labeling
-df.to_csv('../data/pilot_2/messages_split.csv', index=False) 
+df.to_csv('../data/gen3_mix/messages_split.csv', index=False) 
 
 
 
